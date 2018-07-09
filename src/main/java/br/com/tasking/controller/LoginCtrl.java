@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -41,13 +42,16 @@ public class LoginCtrl {
 
     @PostMapping("/cadastro")
     private ModelAndView cadastro(@Valid @ModelAttribute("user") User user,
-                                  BindingResult bindingResult) {
+                                  BindingResult bindingResult,
+                                  RedirectAttributes attributes) {
         if (bindingResult.hasErrors()) {
             return cadastro(user);
         }
         user.setTelefone(user.getTelefone().replaceAll("[^0-9]", ""));
         user.setSenha(new BCryptPasswordEncoder().encode(user.getSenha()));
         service.save(user);
-        return new ModelAndView("redirect:/login");
+        ModelAndView modelAndView = new ModelAndView("redirect:/login");
+        attributes.addFlashAttribute("mensagem", "Usuário cadastrado com sucesso");
+        return modelAndView;
     }
 }

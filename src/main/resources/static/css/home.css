@@ -23,6 +23,10 @@
 
 }
 
+.group-details-task {
+    padding: 20px;
+}
+
 /*BreakPoint*/
 
 @media screen and (max-width:750px) {
