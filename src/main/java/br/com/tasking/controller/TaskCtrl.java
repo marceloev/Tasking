@@ -16,6 +16,6 @@ public class TaskCtrl {
     private ModelAndView novaTask(@Valid @ModelAttribute("task") Task task,
                                   BindingResult bindingResult) {
         System.out.println(task.toString());
-        return new ModelAndView("/home");
+        return new ModelAndView("redirect:/home");
     }
 }

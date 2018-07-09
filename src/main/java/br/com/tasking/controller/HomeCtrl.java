@@ -32,7 +32,8 @@ public class HomeCtrl {
     private ModelAndView homeAll() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         ModelAndView modelAndView = new ModelAndView("/home");
-        modelAndView.getModelMap().addAttribute("tasks", service.findAll(auth.getName()));
+        modelAndView.getModelMap().addAttribute("tasks", service.findPendentes(auth.getName()));
+        modelAndView.getModelMap().addAttribute("task", new Task());
         return modelAndView;
     }
 
