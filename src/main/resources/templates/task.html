@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
@@ -13,70 +14,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#onlyPendentes').click(function() {
-            var val = this.checked;
-            if(val) {
-                window.location.href = "/home/";
-            } else if (!val) {
-                window.location.href = "/home/all";
-            }
-        })
-        $('#dataTask').val(new Date().toJSON().slice(0,10));
-    });
-</script>
 <body>
-<header th:insert="fragments/header.html :: header"/>
-<section id="mainSection">
-    <article id="mainArticle">
-        <div class="row tsk-full">
-            <button class="btn btn-success" data-toggle="modal" data-target="#detailsTask">
-                <i class="fas fa-plus-circle"></i>
-                Adicionar
-            </button>
-        </div>
-        <div class="checkbox" align="center">
-            <input type="checkbox" id="onlyPendentes" checked>Apenas Pendentes
-        </div>
-        <hr/>
-    </article>
-    <aside id="mainAside">
-        <div class="list-group" th:if="${tasks.size() > 0}">
-            <a th:each="task : ${tasks}" data-toggle="modal" data-target="#myTask"
-               class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <h6 class="mb-1">[[${task.descricao}]]</h6>
-                    <small>[[${task.data}]]</small>
-                </div>
-                <p class="mb-0">[[${task.observacao}]]</p>
-            </a>
-        </div>
-    </aside>
-</section>
-<div class="modal fade" id="myTask" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"/>
-            </div>
-            <div class="modal-body">
-                <p>
-                <h4 align="center">O que deseja fazer com esta tarefa?</h4>
-                </p>
-                <ul class="list-group">
-                    <a href="#" class="list-group-item list-group-item-success">Marcar como resolvida</a>
-                    <a href="#" class="list-group-item list-group-item-info">Alterar Tarefa</a>
-                    <a href="#" class="list-group-item list-group-item-danger">Excluir tarefa</a>
-                </ul>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Voltar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<form action="/novatask" method="POST">
+<form action="/novatask" method="POST" th:object="${task}">
     <div class="modal fade bd-example-modal-lg" id="detailsTask" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -91,11 +30,11 @@
                         <div class="form-row">
                             <div class="col col-md-7">
                                 <a class="tsk-required">Descrição:</a>
-                                <input type="text" class="form-control"/>
+                                <input type="text" class="form-control" name="descricao"/>
                             </div>
                             <div class="col">
                                 <a class="tsk-required">Data da Tarefa</a>
-                                <input type="date" class="form-control" id="dataTask">
+                                <input type="date" class="form-control" id="dataTask" name="data">
                             </div>
                             <div class="col">
                                 <div class="form-check">
@@ -107,7 +46,7 @@
                         </div>
                         <div class="form-row">
                             <a>Observação:</a>
-                            <textarea class="form-control" rows="20"></textarea>
+                            <textarea class="form-control" rows="20" name="observacao"></textarea>
                         </div>
                         <hr/>
                         <div class="form-group" align="right">

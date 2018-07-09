@@ -1,4 +1,4 @@
-/*(document).ready(function() {
+/*function seePendentes() {
         $('#onlyPendentes').click(function() {
             var val = this.checked;
             if(val) {
@@ -6,5 +6,5 @@
             } else if (!val) {
                 window.location.href = "/home/all";
             }
-        })
-    });*/
+        });
+    }*/
