@@ -28,7 +28,6 @@ public class Task {
             foreignKey = @ForeignKey(name = "FK_TTASK_CODUSU"))
     private User usuario;
 
-    @Length(max = 1, message = "Resolvido de Tarefa deve conter até 1 dígito")
     @NotNull(message = "Tarefa deve conter resolvido S ou N")
     @Column(name = "RESOLVIDO", length = 1, nullable = false)
     private Character resolvido = 'N';

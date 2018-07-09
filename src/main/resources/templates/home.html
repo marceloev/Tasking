@@ -25,6 +25,7 @@
         })
         $('#dataTask').val(new Date().toJSON().slice(0,10));
     });
+
 </script>
 <body>
 <header th:insert="fragments/header.html :: header"/>
@@ -91,23 +92,23 @@
                         <div class="form-row">
                             <div class="col col-md-7">
                                 <a class="tsk-required">Descrição:</a>
-                                <input type="text" class="form-control"/>
+                                <input type="text" class="form-control" name="descricao" th:value="${task.descricao}"/>
                             </div>
                             <div class="col">
                                 <a class="tsk-required">Data da Tarefa</a>
-                                <input type="date" class="form-control" id="dataTask">
+                                <input type="date" class="form-control" id="dataTask" name="data" th:value="${task.data}">
                             </div>
                             <div class="col">
-                                <div class="form-check">
+                                <div class="form-check tsk-required">
                                     <br/>
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="resolvido" th:value="${task.resolvido}">
                                     <label class="form-check-label" for="exampleCheck1">Resolvido?</label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <a>Observação:</a>
-                            <textarea class="form-control" rows="20"></textarea>
+                            <textarea class="form-control" rows="10" name="observacao" th:value="${task.observacao}"></textarea>
                         </div>
                         <hr/>
                         <div class="form-group" align="right">

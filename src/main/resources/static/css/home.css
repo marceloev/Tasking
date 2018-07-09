@@ -29,7 +29,7 @@
 
 /*BreakPoint*/
 
-@media screen and (max-width:750px) {
+@media screen and (max-width:860px) {
     #mainSection {
         grid-template-rows: 20vh 80vh;
         grid-template-columns: 100vh;
