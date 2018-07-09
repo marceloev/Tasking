@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Tasking · Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/login.css" th:href="@{../css/login.css}">
+</head>
+<body>
+<div>
+    <div class="modal-dialog modal-login">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <u>Acesso ao Sistema</u>
+                </h4>
+            </div>
+            <div class="alert alert-success" align="center" th:text="${mensagem}"
+                 th:if="${not #strings.isEmpty(mensagem)}">
+            </div>
+            <div class="alert alert-danger" align="center" th:text="${error}"
+                 th:if="${not #strings.isEmpty(error)}">
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="form-group">
+                        <i class="fa fa-user"></i>
+                        <input type="text" class="form-control" id="username" name="username" autofocus
+                               placeholder="Usuário" required="true" style="text-transform: uppercase;">
+                    </div>
+                    <div class="form-group">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" class="form-control" id="password" name="password"
+                               placeholder="Senha" required="true">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a th:href="@{/cadastro}">Deseja fazer um novo cadastro?</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>                            

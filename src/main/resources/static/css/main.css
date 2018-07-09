@@ -1,0 +1,12 @@
+.tsk-required:after {
+	content: " *";
+	color: red;
+}
+
+.tsk-footer {
+   left:0px;
+   bottom:0px;
+   height:23px;
+   width:100%;
+   position:fixed;
+}

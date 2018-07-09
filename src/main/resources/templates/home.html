@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasking · Home</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{../css/main.css}">
+    <link rel="stylesheet" href="../static/css/home.css" th:href="@{../css/home.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+<script>
+    $(document).ready(function() {
+        $('#onlyPendentes').click(function() {
+            var val = this.checked;
+            if(val) {
+                window.location.href = "/home/";
+            } else if (!val) {
+                window.location.href = "/home/all";
+            }
+        })
+    });
+</script>
+<body>
+<header th:insert="fragments/header.html :: header"/>
+<section id="mainSection">
+    <article id="mainArticle">
+        <div class="row tsk-full">
+            <button class="btn btn-success">
+                <i class="fas fa-plus-circle"></i>
+                Adicionar
+            </button>
+        </div>
+        <div class="checkbox" align="center">
+            <input type="checkbox" id="onlyPendentes" checked>Apenas Pendentes
+        </div>
+        <hr/>
+    </article>
+    <aside id="mainAside">
+        <div class="list-group" th:if="${tasks.size() > 0}">
+            <a th:each="task : ${tasks}" data-toggle="modal" data-target="#myModal"
+               class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h6 class="mb-1">[[${task.descricao}]]</h6>
+                    <small>[[${task.data}]]</small>
+                </div>
+                <p class="mb-0">[[${task.observacao}]]</p>
+            </a>
+        </div>
+    </aside>
+</section>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"/>
+            </div>
+            <div class="modal-body">
+                <p>
+                <h4 align="center">O que deseja fazer com esta tarefa?</h4>
+                </p>
+                <ul class="list-group">
+                    <a href="#" class="list-group-item list-group-item-success">Marcar como resolvida</a>
+                    <a href="#" class="list-group-item list-group-item-info">Alterar Tarefa</a>
+                    <a href="#" class="list-group-item list-group-item-danger">Excluir tarefa</a>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Voltar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

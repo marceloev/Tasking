@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasking · Cadastro</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{../css/main.css}">
+</head>
+<body>
+<form class="form-horizontal" th:action="@{/cadastro}" method="POST" th:object="${user}">
+    <div style="margin: 2px;">
+        <h3 class="page-header" align="center">Cadastro de Usuário</h3>
+        <hr>
+    </div>
+    <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}" style="margin: 5px;">
+        <h6 class="alert-heading">Houveram alguns problemas, veja abaixo:</h6>
+        <hr>
+        <div th:each="detailedError : ${#fields.detailedErrors()}">
+            <span th:text="${detailedError.message}"></span>
+        </div>
+    </div>
+    <div class="form-group" style="margin: 10px;">
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col">
+                    <i class="fas fa-at"></i>
+                    <a class="tsk-required">E-mail:</a>
+                    <input type="email" class="form-control" maxlength="60" name="email"
+                           placeholder="email@exemplo.com" required autofocus/>
+                </div>
+                <div class="col">
+                    <i class="fas fa-user"></i>
+                    <a class="tsk-required">Usuário:</a>
+                    <input type="text" class="form-control" maxlength="20" name="login"
+                           required style="text-transform: uppercase;"/>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col col-md-2">
+                    <i class="fas fa-signature"></i>
+                    <a class="tsk-required">Nome:</a>
+                    <input type="text" class="form-control" maxlength="20" name="nome"
+                           required/>
+                </div>
+                <div class="col col-md-4">
+                    <a class="tsk-required">Sobrenome:</a>
+                    <input type="text" class="form-control" maxlength="60" name="sobrenome"
+                           required/>
+                </div>
+                <div class="col">
+                    <i class="fas fa-unlock"></i>
+                    <a class="tsk-required">Senha:</a>
+                    <input type="password" class="form-control" name="senha"
+                           required/>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col">
+                    <i class="fas fa-mobile-alt"></i>
+                    <a class="tsk-required">Telefone:</a>
+                    <input type="text" class="form-control" id="telefoneMask" name="telefone"
+                           placeholder="(34) 99999-9999" required/>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-outline-success">Cadastrar</button>
+            <button type="submit" class="btn btn-outline-danger" form="return">Cancelar</button>
+        </div>
+    </div>
+</form>
+<form id="return" th:action="@{/}" method="GET"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('#telefoneMask').mask('(00) 00000-0000');
+      });
+</script>
+</body>
+</html>
