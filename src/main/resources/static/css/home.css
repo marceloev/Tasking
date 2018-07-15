@@ -2,12 +2,14 @@
     margin: 0px;
     padding: 0px;
     display: grid;
-    grid-template-rows: 100vh;
-    grid-template-columns: 30vh;
-    grid-template-areas: "content aside";
+    grid-template-rows: 91vh;
+    grid-template-columns: 15vw 85vw;
+    grid-template-areas: "article aside";
+    overflow: hidden;
 }
 
 #mainArticle {
+    grid-area: article;
     border-color: WhiteSmoke;
     border-style: solid;
     border-width: medium;
@@ -16,11 +18,12 @@
 
 #mainArticle .row button{
     margin: 10px;
-    width: 100vh;
+    width: 100vw;
 }
 
 #mainAside {
-
+    grid-area: aside;
+    overflow: auto;
 }
 
 .group-details-task {
@@ -32,8 +35,8 @@
 @media screen and (max-width:860px) {
     #mainSection {
         grid-template-rows: 20vh 80vh;
-        grid-template-columns: 100vh;
-        grid-template-areas: "content" "aside";
+        grid-template-columns: 100vw;
+        grid-template-areas: "article" "aside";
     }
 
 }

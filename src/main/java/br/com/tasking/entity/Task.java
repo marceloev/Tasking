@@ -22,7 +22,7 @@ public class Task {
     @Column(name = "CODTASK")
     private int codigo;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false, targetEntity = User.class)
+    @ManyToOne(optional = false, targetEntity = User.class)
     @NotNull(message = "Usuário da Tarefa deve ser informado")
     @JoinColumn(name = "CODUSU", nullable = false,
             foreignKey = @ForeignKey(name = "FK_TTASK_CODUSU"))

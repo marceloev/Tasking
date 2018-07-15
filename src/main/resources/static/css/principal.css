@@ -1,0 +1,44 @@
+#rootPane {
+  display: grid;
+  grid-template-rows: 10vh 80vh 10vh;
+  grid-template-columns: 13vw 50vw 37vw;
+  grid-template-areas: "header header header" "article aside aside2" "footer aside aside2";
+}
+
+#headerPane {
+  background: green;
+  grid-area: header;
+}
+
+#articlePane {
+  background: red;
+  grid-area: article;
+  overflow-y: auto;
+}
+
+#asidePane {
+  background: blue;
+  grid-area: aside;
+  overflow-y: auto;
+}
+
+#aside2Pane {
+  background: brown;
+  grid-area: aside2;
+  overflow-y: auto;
+}
+
+#footerPane {
+  background: yellow;
+  grid-area: footer;
+  overflow-y: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  #rootPane {
+    grid-template-columns: 100vw;
+    grid-template-rows: 6vh 10vh 40vh 40vh 4vh;
+    grid-template-areas: "header" "article" "aside" "aside2" "footer";
+  }
+}

@@ -16,4 +16,10 @@ public class UserDAO extends GenericDAO<User, Integer> {
         query.setParameter("P_LOGIN", login);
         return (User) query.getSingleResult();
     }
+
+    public User findByLoginWithoutThrows(String login) {
+        Query query = getEntityManager().createNamedQuery("User.findByLogin");
+        query.setParameter("P_LOGIN", login);
+        return (User) query.getSingleResult();
+    }
 }

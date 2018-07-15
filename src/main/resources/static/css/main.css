@@ -3,6 +3,10 @@
 	color: red;
 }
 
+.tsk-center-text {
+	text-align: center;
+}
+
 .tsk-footer {
    left:0px;
    bottom:0px;
